@@ -17,7 +17,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: Column(children: [
         SizedBox(
-          height: 200,
+          height: 150,
         ),
         Center(
             child: Text(
@@ -86,7 +86,7 @@ class _SignInState extends State<SignIn> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextFormField(
-                controller:  _passwordController,
+                controller: _passwordController,
                 onChanged: (value) {
                   // Handle the value change
                 },
@@ -107,21 +107,22 @@ class _SignInState extends State<SignIn> {
                   prefixIcon:
                       Icon(Icons.lock), // Replace with desired prefix icon
                   suffixIcon: IconButton(
-      icon: Icon(
-        _isPasswordVisible
-            ? Icons.visibility
-            : Icons.visibility_off, // Change icon based on visibility status
-      ),
-      onPressed: () {
-        setState(() {
-          _isPasswordVisible =!_isPasswordVisible;
-        });
-      },
-    ),
-    // Add any other desired decoration properties
-  ),
-  obscureText:!_isPasswordVisible,
-                  // Add any other desired decoration propertie
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons
+                              .visibility_off, // Change icon based on visibility status
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
+                  // Add any other desired decoration properties
+                ),
+                obscureText: !_isPasswordVisible,
+                // Add any other desired decoration propertie
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter a password';
@@ -164,7 +165,12 @@ class _SignInState extends State<SignIn> {
               'Login',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                // Perform form submission or any other desired actions
+              }
+            },
           ),
         ),
       ]),
